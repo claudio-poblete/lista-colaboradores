@@ -1,14 +1,9 @@
-import React from 'react'
+import { Alert } from 'react-bootstrap'
 
-export default function Alert({alerta}) {
-
-  const { texto, tipo, estado } = alerta;
-
+const Alerta = ({ message, type }) => {
   return (
-    <div className='alert-box col-12 col-lg-4'>
-    <div className={`alert  ${estado ? tipo : 'display-none'} `}>
-      <span>{texto}</span>
-    </div>
-    </div>
+    <Alert variant={type}>{message}</Alert>
   )
 }
+
+export default Alerta

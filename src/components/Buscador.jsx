@@ -1,31 +1,26 @@
-import React from 'react';
+import { useState } from 'react'
+import { Form } from 'react-bootstrap'
 
-export default function Buscador({ data, dataFilter }) {
-  function inputHandler(e) {
-    const buscarPalabra = e.target.value.toLowerCase();
+const Buscador = ({ onSearch }) => {
+  const [term, setTerm] = useState('')
 
-    const resultado = data.filter(
-      (colaborador) =>
-        colaborador.nombre.toLowerCase().includes(buscarPalabra) ||
-        colaborador.correo.toLowerCase().includes(buscarPalabra) ||
-        colaborador.edad.includes(buscarPalabra) ||
-        colaborador.cargo.toLowerCase().includes(buscarPalabra) ||
-        colaborador.telefono.includes(buscarPalabra)
-    );
-
-    dataFilter(resultado);
+  const handleChange = (event) => {
+    setTerm(event.target.value)
+    onSearch(event.target.value)
   }
 
   return (
-    <div className="buscador col-12 col-md-6">
-      <input
-        type="text"
-        name="buscador"
-        id="buscador"
-        placeholder="Busca un colaborador"
-        className="form-control mb-3"
-        onChange={inputHandler}
-      />
-    </div>
-  );
+    <Form>
+      <Form.Group controlId='formBuscar'>
+        <Form.Control
+          type='tex'
+          placeholder='Buscar colaborador...'
+          value={term}
+          onChange={handleChange}
+        />
+      </Form.Group>
+    </Form>
+  )
 }
+
+export default Buscador

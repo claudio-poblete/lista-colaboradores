@@ -1,8 +1,8 @@
 const Header = () => {
   return (
     <div>
-      <header className='d-flex justify-content-center bg-success p-3'>
-        <h1 className='text-white'>Desafio 2 - Estado de los Componentes</h1>
+      <header className='d-flex justify-content-center bg-dark p-3'>
+        <h1 className='text-white'>Desafio 3 - Renderización de componentes</h1>
       </header>
     </div>
   )

@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { uuid } from 'uuidv4'
 import { Button, Form } from 'react-bootstrap'
 
 const Formulario = ({ agregarEmpleado, showAlert }) => {
   const [formData, setFormData] = useState({
-    id: '',
     nombre: '',
     email: '',
     edad: '',
@@ -28,6 +26,7 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
       setFormData((prevData) => ({
         ...prevData, nombre: ''
       }))
+      return
     }
 
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -36,6 +35,7 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
       setFormData((prevData) => ({
         ...prevData, email: ''
       }))
+      return
     }
 
     const edad = parseInt(formData.edad)
@@ -44,6 +44,7 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
       setFormData((prevData) => ({
         ...prevData, edad: ''
       }))
+      return
     }
 
     const phoneRegex = /^\d{9}$/
@@ -52,10 +53,11 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
       setFormData((prevData) => ({
         ...prevData, telefono: ''
       }))
+      return
     }
 
     const nuevoEmpleado = {
-      id: uuid(),
+      id: Date.now().toString(),
       ...formData
     }
 
@@ -88,7 +90,6 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
           <Form.Control
             type='text'
             name='nombre'
-            placeholder='Nombre Apellido'
             value={formData.nombre}
             onChange={handleChange}
           />
@@ -99,7 +100,6 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
           <Form.Control
             type='email'
             name='email'
-            placeholder='colaborador@dominio.xx'
             value={formData.email}
             onChange={handleChange}
           />
@@ -110,7 +110,6 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
           <Form.Control
             type='number'
             name='edad'
-            placeholder='18'
             value={formData.edad}
             onChange={handleChange}
           />
@@ -121,7 +120,6 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
           <Form.Control
             type='text'
             name='cargo'
-            placeholder='Desarollador Backend'
             value={formData.cargo}
             onChange={handleChange}
           />
@@ -132,8 +130,7 @@ const Formulario = ({ agregarEmpleado, showAlert }) => {
           <Form.Control
             type='tel'
             name='telefono'
-            placeholder='987654321'
-            value={formData.telefonoe}
+            value={formData.telefono}
             onChange={handleChange}
           />
         </Form.Group>
